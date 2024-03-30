@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Controls from "../../components/Controls";
 import Logo from "../../components/Logo";
 import BackgroundImage from "../../components/BackgroundImage";
 
 export default function Page2() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
   return (
     <Div>
       <Div2>
@@ -71,7 +76,12 @@ export default function Page2() {
             Any guesses?
           </Div16>
           <Div17>
-            <Fill> ________________________________________</Fill>
+          <Input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder=" ________________________________________"
+            />
             <Div18>Hint: </Div18>
             <Img8
               loading="lazy"
@@ -110,15 +120,21 @@ export default function Page2() {
     </Div>
   );
 }
-const Fill = styled.div`
+
+const Input = styled.input`
   position: absolute;
   top: 52px;
   left: 24%;
   font-size: var(--font-size-5xl);
   line-height: 29px;
   color: #b6b6b6;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  ::placeholder {
+    color: #b6b6b6;
+  }
 `;
-
 const Div = styled.div``;
 
 const Div2 = styled.div`
